@@ -19,6 +19,8 @@ WORKDIR=${SRCDIR:-/src}
 
 SPEC_FILE=${4:-*.spec}
 
+FLAGS=$6
+
 python -m pip install --upgrade pip wheel setuptools
 
 #
@@ -48,7 +50,7 @@ fi # [ -f $5 ]
 
 
 # if [[ "$@" == "" ]]; then
-pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE
+pyinstaller $FLAGS --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE
 chown -R --reference=. ./dist/windows
 # else
     # sh -c "$@"
